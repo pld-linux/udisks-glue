@@ -1,7 +1,7 @@
 Summary:	udisks-glue is a tool that can associate udisks events to user-defined actions
 Name:		udisks-glue
 Version:	1.1.1
-Release:	0.2
+Release:	1
 License:	distributable (with modifications properly marked if any)
 Group:		Applications
 Source0:	http://carme.pld-linux.org/~uzsolt/sources/%{name}-%{version}.tar.xz
@@ -12,6 +12,7 @@ URL:		http://github.com/fernandotcl/udisks-glue
 BuildRequires:	libconfuse-devel
 BuildRequires:	pkg-config
 BuildRequires:	udev-glib-devel
+Requires:	udisks
 Suggests:	k3b
 Suggests:	libnotify
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
