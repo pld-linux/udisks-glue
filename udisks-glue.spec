@@ -1,17 +1,19 @@
 Summary:	udisks-glue is a tool that can associate udisks events to user-defined actions
 Name:		udisks-glue
-Version:	1.1.1
+Version:	1.2.0
 Release:	1
 License:	distributable (with modifications properly marked if any)
 Group:		Applications
-Source0:	http://carme.pld-linux.org/~uzsolt/sources/%{name}-%{version}.tar.xz
-# Source0-md5:	48600ae617938db28377bcbcd4998e36
+Source0:	https://github.com/downloads/fernandotcl/udisks-glue/%{name}-%{version}.tar.gz
+# Source0-md5:	c5e3777d96048a098472dd12f34782ba
 Source1:	%{name}.conf
-Patch0:		makefile.patch
 URL:		http://github.com/fernandotcl/udisks-glue
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	dbus-glib-devel
+BuildRequires:	glib2-devel
 BuildRequires:	libconfuse-devel
 BuildRequires:	pkg-config
-BuildRequires:	udev-glib-devel
 Requires:	udisks
 Suggests:	k3b
 Suggests:	libnotify
@@ -29,13 +31,14 @@ and k3b (the package suggests these).
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
-%{__make} \
-	CC="%{__cc}" \
-	MYCFLAGS="%{rpmcflags}" \
-	MYLDFLAGS="%{rpmldflags}"
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+%configure
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -43,17 +46,15 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_mandir}/man1
-install man/udisks-glue.1 $RPM_BUILD_ROOT%{_mandir}/man1
-
 install -d $RPM_BUILD_ROOT%{_sysconfdir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
 %{_sysconfdir}/udisks-glue.conf
-%doc README LICENSE
+%doc ChangeLog INSTALL LICENSE README
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/udisks-glue.1*
