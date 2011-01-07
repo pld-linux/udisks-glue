@@ -54,7 +54,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%config(noreplace) %verify(not md5 mtime size %{_sysconfdir}/udisks-glue.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/udisks-glue.conf
 %doc ChangeLog INSTALL LICENSE README
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/udisks-glue.1*
