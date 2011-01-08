@@ -1,11 +1,11 @@
 Summary:	udisks-glue is a tool that can associate udisks events to user-defined actions
 Name:		udisks-glue
-Version:	1.2.0
-Release:	2
+Version:	1.2.1
+Release:	1
 License:	distributable (with modifications properly marked if any)
 Group:		Applications
 Source0:	https://github.com/downloads/fernandotcl/udisks-glue/%{name}-%{version}.tar.gz
-# Source0-md5:	c5e3777d96048a098472dd12f34782ba
+# Source0-md5:	974ae1d6e53262c42d92b2c9ec20fc84
 Source1:	%{name}.conf
 URL:		http://github.com/fernandotcl/udisks-glue
 BuildRequires:	autoconf
